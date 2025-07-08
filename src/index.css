@@ -4,36 +4,36 @@
 
 /* Isometric Game Container */
 .isometric-container {
-  perspective: 1200px;
+  perspective: 1000px;
   perspective-origin: center center;
   overflow: hidden;
 }
 
-/* Isometric Room with 45-degree perspective (reduced from 60) */
+/* Isometric Room with proper 30-degree perspective */
 .isometric-room {
   position: relative;
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transform: rotateX(45deg) rotateY(-45deg) scale(0.9);
+  transform: rotateX(30deg) rotateY(-30deg) scale(1);
   transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center center;
 }
 
-/* Isometric Floor - Base dimensions */
+/* Isometric Floor - Properly grounded */
 .isometric-floor {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%) rotateX(90deg);
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
   background: linear-gradient(45deg, #e8f5e8 25%, transparent 25%),
               linear-gradient(-45deg, #e8f5e8 25%, transparent 25%),
               linear-gradient(45deg, transparent 75%, #e8f5e8 75%),
               linear-gradient(-45deg, transparent 75%, #e8f5e8 75%);
-  background-size: 30px 30px;
-  background-position: 0 0, 0 15px, 15px -15px, -15px 0px;
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
   background-color: #f0f8f0;
   border: 2px solid rgba(139, 115, 85, 0.6);
   box-shadow: 0 0 30px rgba(0,0,0,0.2);
@@ -63,8 +63,8 @@
 .room-living .isometric-floor {
   background-color: #8b4513;
   background-image: 
-    repeating-linear-gradient(0deg, #a0522d, #a0522d 4px, #8b4513 4px, #8b4513 30px),
-    repeating-linear-gradient(90deg, #a0522d, #a0522d 4px, transparent 4px, transparent 30px);
+    repeating-linear-gradient(0deg, #a0522d, #a0522d 3px, #8b4513 3px, #8b4513 20px),
+    repeating-linear-gradient(90deg, #a0522d, #a0522d 3px, transparent 3px, transparent 20px);
   border-color: rgba(101, 67, 33, 0.8);
 }
 
@@ -88,14 +88,14 @@
   border-color: rgba(135, 206, 235, 0.6);
 }
 
-/* Walls positioned at red edges only - Back and Right walls */
+/* Properly positioned walls - Back wall */
 .isometric-wall-back {
   position: absolute;
-  bottom: 200px;
+  bottom: 150px;
   left: 50%;
-  transform: translateX(-50%) translateZ(-200px);
-  width: 400px;
-  height: 200px;
+  transform: translateX(-50%) translateZ(-150px);
+  width: 300px;
+  height: 150px;
   background: linear-gradient(to bottom, 
     #b8a082 0%, 
     #a0845c 30%, 
@@ -106,13 +106,14 @@
   box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
 }
 
+/* Right wall - properly aligned */
 .isometric-wall-right {
   position: absolute;
-  bottom: 200px;
+  bottom: 150px;
   left: 50%;
-  transform: translateX(-50%) translateZ(-200px) rotateY(-90deg) translateZ(200px);
-  width: 400px;
-  height: 200px;
+  transform: translateX(-50%) translateZ(-150px) rotateY(-90deg) translateZ(150px);
+  width: 300px;
+  height: 150px;
   background: linear-gradient(to bottom, 
     #9d8266 0%, 
     #8b7355 30%, 
@@ -124,7 +125,7 @@
   box-shadow: inset 0 0 50px rgba(0,0,0,0.15);
 }
 
-/* Remove left wall - no wall where yellow edges are */
+/* Remove left wall for open design */
 .isometric-wall-left {
   display: none;
 }
@@ -143,31 +144,31 @@
   z-index: 1;
 }
 
-/* Alex Character - Adjusted for 45-degree perspective */
+/* Alex Character - Properly positioned on floor */
 .isometric-character {
   position: absolute;
-  bottom: 80px;
+  bottom: 20px;
   left: 50%;
-  transform: translateX(-50%) translateZ(15px);
+  transform: translateX(-50%) translateZ(5px);
   z-index: 100;
   transition: all 0.5s ease;
 }
 
 .alex-sprite-isometric {
-  width: 50px;
-  height: 65px;
+  width: 40px;
+  height: 50px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.4));
-  transform: rotateX(-45deg) rotateY(45deg);
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4));
+  transform: rotateX(-30deg) rotateY(30deg);
   transition: all 0.3s ease;
 }
 
 /* Character animations */
 @keyframes isometric-character-bounce {
-  0%, 100% { transform: translateX(-50%) translateZ(15px) translateY(0px); }
-  50% { transform: translateX(-50%) translateZ(15px) translateY(-8px); }
+  0%, 100% { transform: translateX(-50%) translateZ(5px) translateY(0px); }
+  50% { transform: translateX(-50%) translateZ(5px) translateY(-5px); }
 }
 
 .isometric-character:not(.sleeping) .alex-sprite-isometric {
@@ -184,8 +185,8 @@
 }
 
 .isometric-object:hover {
-  transform: translateZ(15px) scale(1.05);
-  filter: brightness(1.2) drop-shadow(0 10px 20px rgba(16, 185, 129, 0.4));
+  transform: translateZ(8px) scale(1.05);
+  filter: brightness(1.2) drop-shadow(0 5px 15px rgba(16, 185, 129, 0.4));
 }
 
 .isometric-object.used {
@@ -196,11 +197,11 @@
 /* Realistic Shadows */
 .isometric-shadow {
   position: absolute;
-  bottom: -6px;
+  bottom: -3px;
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
-  height: 10px;
+  height: 6px;
   background: radial-gradient(ellipse, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 50%, transparent 80%);
   border-radius: 50%;
   z-index: -1;
@@ -209,20 +210,20 @@
 /* Completion Indicators */
 .isometric-completion {
   position: absolute;
-  top: -20px;
-  right: -10px;
-  width: 20px;
-  height: 20px;
+  top: -15px;
+  right: -8px;
+  width: 16px;
+  height: 16px;
   background: linear-gradient(45deg, #22c55e 0%, #16a34a 100%);
   border: 2px solid #ffffff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 10px;
   color: white;
   font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
   z-index: 10;
   animation: completion-pulse 2s ease-in-out infinite;
 }
@@ -234,10 +235,10 @@
 
 /* BEDROOM - Properly positioned objects */
 .room-bedroom .isometric-bed {
-  bottom: 100px;
-  right: 25%;
-  width: 100px;
-  height: 60px;
+  bottom: 40px;
+  right: 30%;
+  width: 80px;
+  height: 50px;
   background: linear-gradient(45deg, 
     #8b4513 0%, 
     #a0522d 20%, 
@@ -246,185 +247,185 @@
     #ffffff 80%, 
     #4a90e2 100%);
   border: 2px solid #654321;
-  border-radius: 8px;
-  transform: translateZ(20px) rotateX(-8deg);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  border-radius: 6px;
+  transform: translateZ(15px) rotateX(-5deg);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
   display: block;
 }
 
 .room-bedroom .isometric-bed::before {
   content: '';
   position: absolute;
-  top: -12px;
-  left: 10px;
-  width: 80px;
-  height: 45px;
+  top: -8px;
+  left: 8px;
+  width: 64px;
+  height: 35px;
   background: linear-gradient(45deg, #f5f5dc 0%, #ffffff 50%, #e6e6fa 100%);
   border: 2px solid #ddd;
-  border-radius: 6px;
-  box-shadow: inset 0 0 8px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
 }
 
 .room-bedroom .isometric-bed::after {
   content: '';
   position: absolute;
-  top: -8px;
-  left: 8px;
-  width: 25px;
-  height: 20px;
+  top: -6px;
+  left: 6px;
+  width: 20px;
+  height: 15px;
   background: linear-gradient(45deg, #ffffff 0%, #f0f8ff 100%);
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 /* BEDROOM - Wardrobe positioned against back wall */
 .room-bedroom .isometric-wardrobe {
-  bottom: 140px;
-  left: 15%;
-  width: 70px;
-  height: 90px;
+  bottom: 80px;
+  left: 20%;
+  width: 55px;
+  height: 70px;
   background: linear-gradient(45deg, 
     #8b4513 0%, 
     #a0522d 30%, 
     #654321 70%, 
     #543a1a 100%);
   border: 2px solid #654321;
-  border-radius: 6px;
-  transform: translateZ(35px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+  border-radius: 4px;
+  transform: translateZ(25px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
   display: block;
 }
 
 .room-bedroom .isometric-wardrobe::before {
   content: '';
   position: absolute;
-  top: 10px;
-  left: 8px;
-  width: 54px;
-  height: 70px;
+  top: 8px;
+  left: 6px;
+  width: 43px;
+  height: 54px;
   background: 
     linear-gradient(90deg, 
-      #4a90e2 0%, #4a90e2 9px, 
-      #ef4444 9px, #ef4444 18px, 
-      #22c55e 18px, #22c55e 27px, 
-      #f59e0b 27px, #f59e0b 36px, 
-      #8b5cf6 36px, #8b5cf6 45px, 
-      #ec4899 45px, #ec4899 54px),
-    linear-gradient(0deg, #333 0%, #333 2px, transparent 2px, transparent 10px);
-  background-size: 54px 10px, 54px 10px;
+      #4a90e2 0%, #4a90e2 7px, 
+      #ef4444 7px, #ef4444 14px, 
+      #22c55e 14px, #22c55e 21px, 
+      #f59e0b 21px, #f59e0b 28px, 
+      #8b5cf6 28px, #8b5cf6 35px, 
+      #ec4899 35px, #ec4899 43px),
+    linear-gradient(0deg, #333 0%, #333 2px, transparent 2px, transparent 8px);
+  background-size: 43px 8px, 43px 8px;
   border: 1px solid #333;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 /* BEDROOM - Vanity positioned in corner */
 .room-bedroom .isometric-vanity {
-  bottom: 120px;
-  right: 15%;
-  width: 60px;
-  height: 40px;
+  bottom: 60px;
+  right: 20%;
+  width: 48px;
+  height: 32px;
   background: linear-gradient(45deg, 
     #f5f5dc 0%, 
     #ffffff 30%, 
     #faf0e6 70%, 
     #e6e6fa 100%);
   border: 2px solid #ddd;
-  border-radius: 6px;
-  transform: translateZ(25px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  transform: translateZ(18px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
   display: block;
 }
 
 .room-bedroom .isometric-vanity::before {
   content: '';
   position: absolute;
-  top: -20px;
-  left: 10px;
-  width: 40px;
-  height: 25px;
+  top: -15px;
+  left: 8px;
+  width: 32px;
+  height: 20px;
   background: linear-gradient(45deg, #e6f3ff 0%, #87ceeb 50%, #b0e0e6 100%);
   border: 2px solid #333;
-  border-radius: 4px;
-  box-shadow: inset 0 0 8px rgba(135, 206, 235, 0.3);
+  border-radius: 3px;
+  box-shadow: inset 0 0 6px rgba(135, 206, 235, 0.3);
 }
 
 .room-bedroom .isometric-vanity::after {
   content: '💄✨';
   position: absolute;
-  top: 6px;
-  right: 10px;
-  font-size: 10px;
+  top: 5px;
+  right: 8px;
+  font-size: 8px;
 }
 
 /* BEDROOM - Chair positioned near vanity */
 .room-bedroom .isometric-chair {
-  bottom: 90px;
-  right: 35%;
-  width: 35px;
-  height: 35px;
+  bottom: 35px;
+  right: 40%;
+  width: 28px;
+  height: 28px;
   background: linear-gradient(45deg, 
     #8b4513 0%, 
     #a0522d 50%, 
     #654321 100%);
   border: 2px solid #654321;
-  border-radius: 4px;
-  transform: translateZ(18px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  border-radius: 3px;
+  transform: translateZ(12px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   display: block;
 }
 
 .room-bedroom .isometric-chair::before {
   content: '';
   position: absolute;
-  top: -25px;
-  left: 5px;
-  width: 25px;
-  height: 30px;
+  top: -20px;
+  left: 4px;
+  width: 20px;
+  height: 24px;
   background: linear-gradient(45deg, #a0522d 0%, #8b4513 100%);
   border: 1px solid #654321;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 /* BEDROOM - Bedside lamp */
 .room-bedroom .isometric-bedside-lamp {
-  bottom: 110px;
-  right: 10%;
-  width: 25px;
-  height: 45px;
+  bottom: 50px;
+  right: 15%;
+  width: 20px;
+  height: 35px;
   background: linear-gradient(45deg, 
     #f5f5dc 0%, 
     #ffffff 50%, 
     #fffacd 100%);
   border: 2px solid #ddd;
-  border-radius: 4px;
-  transform: translateZ(22px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border-radius: 3px;
+  transform: translateZ(16px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   display: block;
 }
 
 .room-bedroom .isometric-bedside-lamp::before {
   content: '';
   position: absolute;
-  top: -15px;
+  top: -12px;
   left: 2px;
-  width: 21px;
-  height: 15px;
+  width: 16px;
+  height: 12px;
   background: linear-gradient(45deg, #fffacd 0%, #ffffe0 100%);
   border: 1px solid #ddd;
-  border-radius: 50% 50% 20% 20%;
-  box-shadow: 0 0 10px rgba(255, 255, 224, 0.5);
+  border-radius: 50% 50% 15% 15%;
+  box-shadow: 0 0 8px rgba(255, 255, 224, 0.5);
 }
 
 /* BEDROOM - Window */
 .room-bedroom .isometric-bedroom-window {
-  bottom: 160px;
-  left: 5%;
-  width: 60px;
-  height: 50px;
+  bottom: 100px;
+  left: 10%;
+  width: 48px;
+  height: 40px;
   background: linear-gradient(45deg, #87ceeb 0%, #b0e0e6 50%, #e0f6ff 100%);
-  border: 3px solid #333;
-  border-radius: 6px;
-  transform: translateZ(45px);
-  box-shadow: inset 0 0 15px rgba(135, 206, 235, 0.3);
+  border: 2px solid #333;
+  border-radius: 4px;
+  transform: translateZ(30px);
+  box-shadow: inset 0 0 10px rgba(135, 206, 235, 0.3);
   display: block;
 }
 
@@ -450,10 +451,10 @@
 
 /* BEDROOM - Rug */
 .room-bedroom .isometric-bedroom-rug {
-  bottom: 60px;
-  left: 30%;
-  width: 80px;
-  height: 50px;
+  bottom: 15px;
+  left: 35%;
+  width: 64px;
+  height: 40px;
   background: linear-gradient(45deg, 
     #8b0000 0%, 
     #dc143c 25%, 
@@ -461,167 +462,167 @@
     #8b0000 75%, 
     #654321 100%);
   border: 2px solid #654321;
-  border-radius: 8px;
-  transform: translateZ(2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-radius: 6px;
+  transform: translateZ(1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   display: block;
 }
 
 /* BEDROOM - Laundry basket */
 .room-bedroom .isometric-laundry-basket {
-  bottom: 80px;
-  left: 10%;
-  width: 40px;
-  height: 35px;
+  bottom: 30px;
+  left: 15%;
+  width: 32px;
+  height: 28px;
   background: linear-gradient(45deg, 
     #deb887 0%, 
     #f4e4bc 50%, 
     #d2b48c 100%);
   border: 2px solid #8b7355;
-  border-radius: 6px;
-  transform: translateZ(15px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  border-radius: 4px;
+  transform: translateZ(10px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   display: block;
 }
 
 .room-bedroom .isometric-laundry-basket::before {
   content: '👕👖';
   position: absolute;
-  top: -8px;
+  top: -6px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 8px;
+  font-size: 6px;
 }
 
 /* LIVING ROOM - Sofa positioned centrally */
 .room-living .isometric-sofa {
-  bottom: 110px;
-  left: 25%;
-  width: 90px;
-  height: 55px;
+  bottom: 50px;
+  left: 30%;
+  width: 72px;
+  height: 44px;
   background: linear-gradient(45deg, 
     #6b5b95 0%, 
     #8b7bb8 30%, 
     #a593c2 70%, 
     #c8b5d1 100%);
   border: 2px solid #5a4a7a;
-  border-radius: 8px;
-  transform: translateZ(18px) rotateX(-6deg);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  border-radius: 6px;
+  transform: translateZ(14px) rotateX(-4deg);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
   display: block;
 }
 
 .room-living .isometric-sofa::before {
   content: '';
   position: absolute;
-  top: -15px;
+  top: -12px;
   left: 0;
-  width: 90px;
-  height: 25px;
+  width: 72px;
+  height: 20px;
   background: linear-gradient(45deg, #8b7bb8 0%, #a593c2 50%, #c8b5d1 100%);
   border: 2px solid #6b5b95;
-  border-radius: 6px 6px 0 0;
-  box-shadow: inset 0 0 12px rgba(107, 91, 149, 0.2);
+  border-radius: 4px 4px 0 0;
+  box-shadow: inset 0 0 8px rgba(107, 91, 149, 0.2);
 }
 
 .room-living .isometric-sofa::after {
   content: '';
   position: absolute;
-  top: -8px;
-  left: 12px;
-  width: 66px;
-  height: 15px;
+  top: -6px;
+  left: 10px;
+  width: 52px;
+  height: 12px;
   background: 
     linear-gradient(90deg, 
-      #a593c2 0%, #a593c2 15px, 
-      #8b7bb8 15px, #8b7bb8 30px, 
-      #a593c2 30px, #a593c2 45px, 
-      #8b7bb8 45px, #8b7bb8 60px);
+      #a593c2 0%, #a593c2 12px, 
+      #8b7bb8 12px, #8b7bb8 24px, 
+      #a593c2 24px, #a593c2 36px, 
+      #8b7bb8 36px, #8b7bb8 48px);
   border: 1px solid #6b5b95;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 /* LIVING ROOM - Bookshelf against wall */
 .room-living .isometric-bookshelf {
-  bottom: 150px;
-  left: 10%;
-  width: 60px;
-  height: 80px;
+  bottom: 90px;
+  left: 15%;
+  width: 48px;
+  height: 64px;
   background: linear-gradient(45deg, 
     #8b4513 0%, 
     #a0522d 30%, 
     #654321 100%);
   border: 2px solid #654321;
-  border-radius: 4px;
-  transform: translateZ(32px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+  border-radius: 3px;
+  transform: translateZ(22px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
   display: block;
 }
 
 .room-living .isometric-bookshelf::before {
   content: '';
   position: absolute;
-  top: 8px;
-  left: 6px;
-  width: 48px;
-  height: 64px;
+  top: 6px;
+  left: 5px;
+  width: 38px;
+  height: 52px;
   background: 
     linear-gradient(90deg, 
-      #ff6b35 0%, #ff6b35 8px, 
-      #4a90e2 8px, #4a90e2 16px, 
-      #22c55e 16px, #22c55e 24px, 
-      #f59e0b 24px, #f59e0b 32px, 
-      #8b5cf6 32px, #8b5cf6 40px, 
-      #ef4444 40px, #ef4444 48px),
+      #ff6b35 0%, #ff6b35 6px, 
+      #4a90e2 6px, #4a90e2 12px, 
+      #22c55e 12px, #22c55e 18px, 
+      #f59e0b 18px, #f59e0b 24px, 
+      #8b5cf6 24px, #8b5cf6 30px, 
+      #ef4444 30px, #ef4444 36px),
     linear-gradient(0deg, 
-      #333 0%, #333 2px, transparent 2px, transparent 10px, 
-      #333 10px, #333 12px, transparent 12px, transparent 20px, 
-      #333 20px, #333 22px, transparent 22px, transparent 30px);
-  background-size: 48px 10px, 48px 10px;
+      #333 0%, #333 2px, transparent 2px, transparent 8px, 
+      #333 8px, #333 10px, transparent 10px, transparent 16px, 
+      #333 16px, #333 18px, transparent 18px, transparent 24px);
+  background-size: 36px 8px, 36px 8px;
   border: 1px solid #333;
 }
 
 /* LIVING ROOM - Floor lamp */
 .room-living .isometric-floor-lamp {
-  bottom: 120px;
-  right: 20%;
-  width: 30px;
-  height: 70px;
+  bottom: 60px;
+  right: 25%;
+  width: 24px;
+  height: 56px;
   background: linear-gradient(45deg, 
     #c0c0c0 0%, 
     #e6e6e6 50%, 
     #f5f5f5 100%);
   border: 2px solid #999;
-  border-radius: 4px;
-  transform: translateZ(28px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  border-radius: 3px;
+  transform: translateZ(20px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
   display: block;
 }
 
 .room-living .isometric-floor-lamp::before {
   content: '';
   position: absolute;
-  top: -20px;
-  left: -10px;
-  width: 50px;
-  height: 25px;
+  top: -16px;
+  left: -8px;
+  width: 40px;
+  height: 20px;
   background: linear-gradient(45deg, #fffacd 0%, #ffffe0 100%);
   border: 2px solid #ddd;
-  border-radius: 50% 50% 20% 20%;
-  box-shadow: 0 0 15px rgba(255, 255, 224, 0.6);
+  border-radius: 50% 50% 15% 15%;
+  box-shadow: 0 0 12px rgba(255, 255, 224, 0.6);
 }
 
 /* LIVING ROOM - Window */
 .room-living .isometric-window {
-  bottom: 160px;
-  right: 5%;
-  width: 70px;
-  height: 55px;
+  bottom: 100px;
+  right: 10%;
+  width: 56px;
+  height: 44px;
   background: linear-gradient(45deg, #87ceeb 0%, #b0e0e6 50%, #e0f6ff 100%);
-  border: 3px solid #333;
-  border-radius: 6px;
-  transform: translateZ(40px);
-  box-shadow: inset 0 0 15px rgba(135, 206, 235, 0.3);
+  border: 2px solid #333;
+  border-radius: 4px;
+  transform: translateZ(28px);
+  box-shadow: inset 0 0 10px rgba(135, 206, 235, 0.3);
   display: block;
 }
 
@@ -647,19 +648,19 @@
 
 /* LIVING ROOM - Wall art */
 .room-living .isometric-wall-art {
-  bottom: 140px;
-  left: 40%;
-  width: 50px;
-  height: 35px;
+  bottom: 85px;
+  left: 45%;
+  width: 40px;
+  height: 28px;
   background: linear-gradient(45deg, 
     #ffd700 0%, 
     #ffed4e 30%, 
     #fff59d 70%, 
     #fffacd 100%);
-  border: 3px solid #8b7355;
-  border-radius: 4px;
-  transform: translateZ(42px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border: 2px solid #8b7355;
+  border-radius: 3px;
+  transform: translateZ(30px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   display: block;
 }
 
@@ -669,23 +670,23 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 12px;
+  font-size: 10px;
 }
 
 /* LIVING ROOM - Wall clock */
 .room-living .isometric-wall-clock {
-  bottom: 170px;
-  left: 60%;
-  width: 35px;
-  height: 35px;
+  bottom: 110px;
+  left: 55%;
+  width: 28px;
+  height: 28px;
   background: linear-gradient(45deg, 
     #f5f5f5 0%, 
     #ffffff 50%, 
     #f0f0f0 100%);
-  border: 3px solid #333;
+  border: 2px solid #333;
   border-radius: 50%;
-  transform: translateZ(43px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  transform: translateZ(32px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   display: block;
 }
 
@@ -695,41 +696,41 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 10px;
+  font-size: 8px;
 }
 
 /* LIVING ROOM - Plant */
 .room-living .isometric-plant {
-  bottom: 90px;
-  right: 10%;
-  width: 35px;
-  height: 50px;
+  bottom: 35px;
+  right: 15%;
+  width: 28px;
+  height: 40px;
   background: linear-gradient(45deg, 
     #8b4513 0%, 
     #a0522d 70%, 
     #654321 100%);
   border: 2px solid #654321;
-  border-radius: 4px;
-  transform: translateZ(20px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  border-radius: 3px;
+  transform: translateZ(14px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
   display: block;
 }
 
 .room-living .isometric-plant::before {
   content: '🌿🌱';
   position: absolute;
-  top: -15px;
+  top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 12px;
+  font-size: 10px;
 }
 
 /* LIVING ROOM - Rug */
 .room-living .isometric-rug {
-  bottom: 60px;
-  left: 20%;
-  width: 100px;
-  height: 60px;
+  bottom: 15px;
+  left: 25%;
+  width: 80px;
+  height: 48px;
   background: linear-gradient(45deg, 
     #8b0000 0%, 
     #dc143c 25%, 
@@ -737,92 +738,92 @@
     #8b0000 75%, 
     #654321 100%);
   border: 2px solid #654321;
-  border-radius: 8px;
-  transform: translateZ(2px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-radius: 6px;
+  transform: translateZ(1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   display: block;
 }
 
 /* KITCHEN - Table positioned centrally */
 .room-kitchen .isometric-table {
-  bottom: 100px;
-  left: 35%;
-  width: 70px;
-  height: 50px;
+  bottom: 40px;
+  left: 40%;
+  width: 56px;
+  height: 40px;
   background: linear-gradient(45deg, 
     #deb887 0%, 
     #f4e4bc 30%, 
     #faf0e6 70%, 
     #fff8dc 100%);
   border: 2px solid #8b7355;
-  border-radius: 6px;
-  transform: translateZ(28px) rotateX(-4deg);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  border-radius: 4px;
+  transform: translateZ(20px) rotateX(-3deg);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
   display: block;
 }
 
 .room-kitchen .isometric-table::before {
   content: '';
   position: absolute;
-  top: 6px;
-  left: 12px;
-  width: 15px;
-  height: 15px;
+  top: 5px;
+  left: 10px;
+  width: 12px;
+  height: 12px;
   background: linear-gradient(45deg, #ffffff 0%, #f0f8ff 100%);
   border: 2px solid #ddd;
   border-radius: 50%;
-  box-shadow: inset 0 0 4px rgba(0,0,0,0.1);
+  box-shadow: inset 0 0 3px rgba(0,0,0,0.1);
 }
 
 .room-kitchen .isometric-table::after {
   content: '🍎🥕';
   position: absolute;
-  top: 8px;
-  left: 14px;
-  font-size: 8px;
+  top: 6px;
+  left: 12px;
+  font-size: 6px;
 }
 
 /* KITCHEN - Water dispenser positioned in corner */
 .room-kitchen .isometric-water {
-  bottom: 90px;
-  right: 15%;
-  width: 35px;
-  height: 55px;
+  bottom: 35px;
+  right: 20%;
+  width: 28px;
+  height: 44px;
   background: linear-gradient(45deg, 
     #e6e6e6 0%, 
     #f0f0f0 30%, 
     #ffffff 70%, 
     #f8f8ff 100%);
   border: 2px solid #ccc;
-  border-radius: 4px;
-  transform: translateZ(30px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+  border-radius: 3px;
+  transform: translateZ(22px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
   display: block;
 }
 
 .room-kitchen .isometric-water::before {
   content: '';
   position: absolute;
-  top: -25px;
-  left: 3px;
-  width: 29px;
-  height: 35px;
+  top: -20px;
+  left: 2px;
+  width: 24px;
+  height: 28px;
   background: linear-gradient(to bottom, 
     #87ceeb 0%, 
     #4682b4 50%, 
     #1e90ff 100%);
   border: 2px solid #333;
-  border-radius: 4px 4px 0 0;
-  box-shadow: inset 0 0 8px rgba(70, 130, 180, 0.3);
+  border-radius: 3px 3px 0 0;
+  box-shadow: inset 0 0 6px rgba(70, 130, 180, 0.3);
 }
 
 .room-kitchen .isometric-water::after {
   content: '💧';
   position: absolute;
-  bottom: 12px;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 8px;
+  font-size: 6px;
   animation: water-drip 3s ease-in-out infinite;
 }
 
@@ -833,67 +834,67 @@
 
 /* KITCHEN - Refrigerator against wall */
 .room-kitchen .isometric-fridge {
-  bottom: 130px;
-  right: 5%;
-  width: 65px;
-  height: 100px;
+  bottom: 75px;
+  right: 10%;
+  width: 52px;
+  height: 80px;
   background: linear-gradient(45deg, 
     #f0f0f0 0%, 
     #ffffff 30%, 
     #e6e6e6 70%, 
     #d3d3d3 100%);
   border: 2px solid #ddd;
-  border-radius: 6px;
-  transform: translateZ(38px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  border-radius: 4px;
+  transform: translateZ(26px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
   display: block;
 }
 
 .room-kitchen .isometric-fridge::before {
   content: '';
   position: absolute;
-  top: 12px;
-  left: 6px;
-  width: 53px;
-  height: 76px;
+  top: 10px;
+  left: 5px;
+  width: 42px;
+  height: 60px;
   background: 
     linear-gradient(0deg, 
-      #87ceeb 0%, #87ceeb 15%, 
-      #ffa500 15%, #ffa500 30%, 
-      #32cd32 30%, #32cd32 45%, 
-      #ff6347 45%, #ff6347 60%, 
-      #dda0dd 60%, #dda0dd 75%);
+      #87ceeb 0%, #87ceeb 12%, 
+      #ffa500 12%, #ffa500 24%, 
+      #32cd32 24%, #32cd32 36%, 
+      #ff6347 36%, #ff6347 48%, 
+      #dda0dd 48%, #dda0dd 60%);
   border: 2px solid #333;
-  border-radius: 3px;
-  box-shadow: inset 0 0 8px rgba(0,0,0,0.1);
+  border-radius: 2px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
 }
 
 .room-kitchen .isometric-fridge::after {
   content: '';
   position: absolute;
   top: 50%;
-  right: -6px;
-  width: 10px;
-  height: 25px;
+  right: -5px;
+  width: 8px;
+  height: 20px;
   background: linear-gradient(45deg, #333 0%, #666 100%);
-  border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 /* KITCHEN - Cutting board */
 .room-kitchen .isometric-cutting-board {
-  bottom: 80px;
-  left: 15%;
-  width: 40px;
-  height: 25px;
+  bottom: 25px;
+  left: 20%;
+  width: 32px;
+  height: 20px;
   background: linear-gradient(45deg, 
     #deb887 0%, 
     #f4e4bc 50%, 
     #d2b48c 100%);
   border: 2px solid #8b7355;
-  border-radius: 4px;
-  transform: translateZ(12px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  border-radius: 3px;
+  transform: translateZ(8px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   display: block;
 }
 
@@ -903,23 +904,23 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 8px;
+  font-size: 6px;
 }
 
 /* KITCHEN - Spice shelf */
 .room-kitchen .isometric-spice-shelf {
-  bottom: 140px;
-  left: 10%;
-  width: 50px;
-  height: 40px;
+  bottom: 85px;
+  left: 15%;
+  width: 40px;
+  height: 32px;
   background: linear-gradient(45deg, 
     #8b4513 0%, 
     #a0522d 50%, 
     #654321 100%);
   border: 2px solid #654321;
-  border-radius: 4px;
-  transform: translateZ(35px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  border-radius: 3px;
+  transform: translateZ(24px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
   display: block;
 }
 
@@ -929,23 +930,23 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 10px;
+  font-size: 8px;
 }
 
 /* KITCHEN - Coffee station */
 .room-kitchen .isometric-coffee-station {
-  bottom: 110px;
-  left: 60%;
-  width: 45px;
-  height: 35px;
+  bottom: 50px;
+  left: 55%;
+  width: 36px;
+  height: 28px;
   background: linear-gradient(45deg, 
     #654321 0%, 
     #8b4513 50%, 
     #a0522d 100%);
   border: 2px solid #654321;
-  border-radius: 4px;
-  transform: translateZ(25px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  border-radius: 3px;
+  transform: translateZ(18px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
   display: block;
 }
 
@@ -955,23 +956,23 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 10px;
+  font-size: 8px;
 }
 
 /* KITCHEN - Trash and recycle */
 .room-kitchen .isometric-trash-recycle {
-  bottom: 70px;
-  right: 30%;
-  width: 35px;
-  height: 40px;
+  bottom: 25px;
+  right: 35%;
+  width: 28px;
+  height: 32px;
   background: linear-gradient(45deg, 
     #666 0%, 
     #999 50%, 
     #ccc 100%);
   border: 2px solid #333;
-  border-radius: 4px;
-  transform: translateZ(18px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  border-radius: 3px;
+  transform: translateZ(12px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   display: block;
 }
 
@@ -981,141 +982,141 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 8px;
+  font-size: 6px;
 }
 
 /* BATHROOM - Shower positioned in corner */
 .room-bathroom .isometric-shower {
-  bottom: 120px;
-  left: 15%;
-  width: 50px;
-  height: 65px;
+  bottom: 60px;
+  left: 20%;
+  width: 40px;
+  height: 52px;
   background: linear-gradient(45deg, 
     #f0f0f0 0%, 
     #ffffff 30%, 
     #e6f3ff 70%, 
     #cce7ff 100%);
   border: 2px solid #ddd;
-  border-radius: 6px;
-  transform: translateZ(28px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+  border-radius: 4px;
+  transform: translateZ(20px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
   display: block;
 }
 
 .room-bathroom .isometric-shower::before {
   content: '';
   position: absolute;
-  top: -15px;
-  left: 12px;
-  width: 26px;
-  height: 10px;
+  top: -12px;
+  left: 10px;
+  width: 20px;
+  height: 8px;
   background: linear-gradient(45deg, #c0c0c0 0%, #e6e6e6 100%);
   border: 2px solid #999;
-  border-radius: 3px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  border-radius: 2px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 .room-bathroom .isometric-shower::after {
   content: '💧💧💧';
   position: absolute;
-  top: -5px;
-  left: 15px;
-  font-size: 6px;
+  top: -4px;
+  left: 12px;
+  font-size: 5px;
   animation: water-drops 2s ease-in-out infinite;
 }
 
 @keyframes water-drops {
   0%, 100% { opacity: 0.6; transform: translateY(0); }
-  50% { opacity: 1; transform: translateY(12px); }
+  50% { opacity: 1; transform: translateY(8px); }
 }
 
 /* BATHROOM - Towel rack */
 .room-bathroom .isometric-towel-rack {
-  bottom: 130px;
-  right: 20%;
-  width: 45px;
-  height: 50px;
+  bottom: 75px;
+  right: 25%;
+  width: 36px;
+  height: 40px;
   background: linear-gradient(45deg, 
     #c0c0c0 0%, 
     #e6e6e6 50%, 
     #f5f5f5 100%);
   border: 2px solid #999;
-  border-radius: 4px;
-  transform: translateZ(30px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  border-radius: 3px;
+  transform: translateZ(22px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
   display: block;
 }
 
 .room-bathroom .isometric-towel-rack::before {
   content: '';
   position: absolute;
-  top: 8px;
-  left: 5px;
-  width: 35px;
-  height: 25px;
+  top: 6px;
+  left: 4px;
+  width: 28px;
+  height: 20px;
   background: linear-gradient(45deg, #87ceeb 0%, #b0e0e6 50%, #e0f6ff 100%);
   border: 1px solid #4682b4;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 .room-bathroom .isometric-towel-rack::after {
   content: '🏊';
   position: absolute;
-  top: 15px;
+  top: 12px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 8px;
+  font-size: 6px;
 }
 
 /* BATHROOM - Sink */
 .room-bathroom .isometric-sink {
-  bottom: 100px;
-  right: 10%;
-  width: 55px;
-  height: 40px;
+  bottom: 40px;
+  right: 15%;
+  width: 44px;
+  height: 32px;
   background: linear-gradient(45deg, 
     #f0f0f0 0%, 
     #ffffff 50%, 
     #f8f8ff 100%);
   border: 2px solid #ddd;
-  border-radius: 6px;
-  transform: translateZ(25px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  transform: translateZ(16px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   display: block;
 }
 
 .room-bathroom .isometric-sink::before {
   content: '';
   position: absolute;
-  top: 5px;
-  left: 15px;
-  width: 25px;
-  height: 20px;
+  top: 4px;
+  left: 12px;
+  width: 20px;
+  height: 16px;
   background: linear-gradient(45deg, #e6f3ff 0%, #cce7ff 100%);
   border: 2px solid #87ceeb;
   border-radius: 50%;
-  box-shadow: inset 0 0 8px rgba(135, 206, 235, 0.3);
+  box-shadow: inset 0 0 6px rgba(135, 206, 235, 0.3);
 }
 
 .room-bathroom .isometric-sink::after {
   content: '🚿';
   position: absolute;
-  top: 8px;
-  right: 8px;
-  font-size: 8px;
+  top: 6px;
+  right: 6px;
+  font-size: 6px;
 }
 
 /* BATHROOM - Mirror */
 .room-bathroom .isometric-mirror {
-  bottom: 140px;
-  right: 8%;
-  width: 50px;
-  height: 40px;
+  bottom: 85px;
+  right: 12%;
+  width: 40px;
+  height: 32px;
   background: linear-gradient(45deg, #e6f3ff 0%, #87ceeb 50%, #b0e0e6 100%);
-  border: 3px solid #333;
-  border-radius: 6px;
-  transform: translateZ(35px);
-  box-shadow: inset 0 0 12px rgba(135, 206, 235, 0.3);
+  border: 2px solid #333;
+  border-radius: 4px;
+  transform: translateZ(26px);
+  box-shadow: inset 0 0 8px rgba(135, 206, 235, 0.3);
   display: block;
 }
 
@@ -1125,15 +1126,15 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 12px;
+  font-size: 10px;
 }
 
 /* BATHROOM - Bathroom rug */
 .room-bathroom .isometric-bathroom-rug {
-  bottom: 60px;
-  left: 25%;
-  width: 70px;
-  height: 40px;
+  bottom: 15px;
+  left: 30%;
+  width: 56px;
+  height: 32px;
   background: linear-gradient(45deg, 
     #87ceeb 0%, 
     #b0e0e6 25%, 
@@ -1141,26 +1142,26 @@
     #b0e0e6 75%, 
     #87ceeb 100%);
   border: 2px solid #4682b4;
-  border-radius: 6px;
-  transform: translateZ(2px);
-  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  transform: translateZ(1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   display: block;
 }
 
 /* BATHROOM - Trash bin */
 .room-bathroom .isometric-trash-bin {
-  bottom: 80px;
-  left: 10%;
-  width: 25px;
-  height: 30px;
+  bottom: 25px;
+  left: 15%;
+  width: 20px;
+  height: 24px;
   background: linear-gradient(45deg, 
     #666 0%, 
     #999 50%, 
     #ccc 100%);
   border: 2px solid #333;
-  border-radius: 4px;
-  transform: translateZ(15px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  border-radius: 3px;
+  transform: translateZ(10px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   display: block;
 }
 
@@ -1170,20 +1171,20 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 8px;
+  font-size: 6px;
 }
 
 /* BATHROOM - Window */
 .room-bathroom .isometric-bathroom-window {
-  bottom: 150px;
-  left: 5%;
-  width: 55px;
-  height: 45px;
+  bottom: 90px;
+  left: 10%;
+  width: 44px;
+  height: 36px;
   background: linear-gradient(45deg, #87ceeb 0%, #b0e0e6 50%, #e0f6ff 100%);
-  border: 3px solid #333;
-  border-radius: 6px;
-  transform: translateZ(38px);
-  box-shadow: inset 0 0 12px rgba(135, 206, 235, 0.3);
+  border: 2px solid #333;
+  border-radius: 4px;
+  transform: translateZ(28px);
+  box-shadow: inset 0 0 8px rgba(135, 206, 235, 0.3);
   display: block;
 }
 
@@ -1209,18 +1210,18 @@
 
 /* BATHROOM - Wall frame */
 .room-bathroom .isometric-wall-frame {
-  bottom: 120px;
-  left: 40%;
-  width: 35px;
-  height: 25px;
+  bottom: 65px;
+  left: 45%;
+  width: 28px;
+  height: 20px;
   background: linear-gradient(45deg, 
     #ffd700 0%, 
     #ffed4e 50%, 
     #fffacd 100%);
   border: 2px solid #8b7355;
-  border-radius: 3px;
-  transform: translateZ(32px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  border-radius: 2px;
+  transform: translateZ(24px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   display: block;
 }
 
@@ -1230,67 +1231,67 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 8px;
+  font-size: 6px;
 }
 
 /* GYM - Exercise equipment positioned centrally */
 .room-gym .isometric-exercise {
-  bottom: 110px;
-  left: 30%;
-  width: 70px;
-  height: 40px;
+  bottom: 50px;
+  left: 35%;
+  width: 56px;
+  height: 32px;
   background: linear-gradient(45deg, 
     #333 0%, 
     #666 30%, 
     #999 70%, 
     #ccc 100%);
   border: 2px solid #222;
-  border-radius: 6px;
-  transform: translateZ(20px) rotateX(-6deg);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+  border-radius: 4px;
+  transform: translateZ(16px) rotateX(-4deg);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
   display: block;
 }
 
 .room-gym .isometric-exercise::before {
   content: '';
   position: absolute;
-  top: -12px;
-  left: -12px;
-  width: 16px;
-  height: 16px;
+  top: -10px;
+  left: -10px;
+  width: 12px;
+  height: 12px;
   background: linear-gradient(45deg, #666 0%, #999 100%);
   border: 2px solid #333;
   border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
 }
 
 .room-gym .isometric-exercise::after {
   content: '';
   position: absolute;
-  top: -12px;
-  right: -12px;
-  width: 16px;
-  height: 16px;
+  top: -10px;
+  right: -10px;
+  width: 12px;
+  height: 12px;
   background: linear-gradient(45deg, #666 0%, #999 100%);
   border: 2px solid #333;
   border-radius: 50%;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3);
 }
 
 /* GYM - Free weights */
 .room-gym .isometric-free-weights {
-  bottom: 80px;
-  left: 15%;
-  width: 50px;
-  height: 30px;
+  bottom: 25px;
+  left: 20%;
+  width: 40px;
+  height: 24px;
   background: linear-gradient(45deg, 
     #333 0%, 
     #666 50%, 
     #999 100%);
   border: 2px solid #222;
-  border-radius: 4px;
-  transform: translateZ(15px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+  border-radius: 3px;
+  transform: translateZ(10px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
   display: block;
 }
 
@@ -1300,49 +1301,49 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 10px;
+  font-size: 8px;
 }
 
 /* GYM - Bench */
 .room-gym .isometric-bench {
-  bottom: 90px;
-  right: 25%;
-  width: 60px;
-  height: 25px;
+  bottom: 35px;
+  right: 30%;
+  width: 48px;
+  height: 20px;
   background: linear-gradient(45deg, 
     #654321 0%, 
     #8b4513 50%, 
     #a0522d 100%);
   border: 2px solid #654321;
-  border-radius: 4px;
-  transform: translateZ(18px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+  border-radius: 3px;
+  transform: translateZ(12px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
   display: block;
 }
 
 .room-gym .isometric-bench::before {
   content: '';
   position: absolute;
-  top: -8px;
-  left: 5px;
-  width: 50px;
-  height: 15px;
+  top: -6px;
+  left: 4px;
+  width: 40px;
+  height: 12px;
   background: linear-gradient(45deg, #8b4513 0%, #a0522d 100%);
   border: 1px solid #654321;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 /* GYM - Mirror */
 .room-gym .isometric-gym-mirror {
-  bottom: 150px;
-  right: 5%;
-  width: 80px;
-  height: 60px;
+  bottom: 90px;
+  right: 10%;
+  width: 64px;
+  height: 48px;
   background: linear-gradient(45deg, #e6f3ff 0%, #87ceeb 50%, #b0e0e6 100%);
-  border: 3px solid #333;
-  border-radius: 6px;
-  transform: translateZ(40px);
-  box-shadow: inset 0 0 15px rgba(135, 206, 235, 0.3);
+  border: 2px solid #333;
+  border-radius: 4px;
+  transform: translateZ(28px);
+  box-shadow: inset 0 0 10px rgba(135, 206, 235, 0.3);
   display: block;
 }
 
@@ -1352,40 +1353,40 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 12px;
+  font-size: 10px;
 }
 
 /* GYM - Yoga mat */
 .room-gym .isometric-yoga-mat {
-  bottom: 60px;
-  left: 40%;
-  width: 80px;
-  height: 30px;
+  bottom: 15px;
+  left: 45%;
+  width: 64px;
+  height: 24px;
   background: linear-gradient(45deg, 
     #8b5cf6 0%, 
     #a78bfa 50%, 
     #c4b5fd 100%);
   border: 2px solid #7c3aed;
-  border-radius: 6px;
-  transform: translateZ(2px);
-  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  transform: translateZ(1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   display: block;
 }
 
 /* GYM - Water bottle */
 .room-gym .isometric-water-bottle {
-  bottom: 100px;
-  right: 10%;
-  width: 20px;
-  height: 35px;
+  bottom: 40px;
+  right: 15%;
+  width: 16px;
+  height: 28px;
   background: linear-gradient(45deg, 
     #87ceeb 0%, 
     #4682b4 50%, 
     #1e90ff 100%);
   border: 2px solid #333;
-  border-radius: 4px;
-  transform: translateZ(16px);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  border-radius: 3px;
+  transform: translateZ(12px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   display: block;
 }
 
@@ -1395,23 +1396,23 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 6px;
+  font-size: 5px;
 }
 
 /* GYM - Ceiling fan */
 .room-gym .isometric-ceiling-fan {
-  bottom: 180px;
+  bottom: 120px;
   left: 50%;
-  width: 60px;
-  height: 20px;
+  width: 48px;
+  height: 16px;
   background: linear-gradient(45deg, 
     #c0c0c0 0%, 
     #e6e6e6 50%, 
     #f5f5f5 100%);
   border: 2px solid #999;
   border-radius: 50%;
-  transform: translateX(-50%) translateZ(45px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  transform: translateX(-50%) translateZ(32px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   display: block;
 }
 
@@ -1421,7 +1422,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 10px;
+  font-size: 8px;
   animation: fan-spin 2s linear infinite;
 }
 
@@ -1432,18 +1433,18 @@
 
 /* GYM - Motivational poster */
 .room-gym .isometric-motivational-poster {
-  bottom: 130px;
-  left: 10%;
-  width: 45px;
-  height: 35px;
+  bottom: 75px;
+  left: 15%;
+  width: 36px;
+  height: 28px;
   background: linear-gradient(45deg, 
     #ffd700 0%, 
     #ffed4e 50%, 
     #fffacd 100%);
   border: 2px solid #8b7355;
-  border-radius: 4px;
-  transform: translateZ(35px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border-radius: 3px;
+  transform: translateZ(26px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   display: block;
 }
 
@@ -1453,23 +1454,23 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 10px;
+  font-size: 8px;
 }
 
 /* GYM - Speaker */
 .room-gym .isometric-speaker {
-  bottom: 120px;
-  left: 60%;
-  width: 35px;
-  height: 40px;
+  bottom: 60px;
+  left: 55%;
+  width: 28px;
+  height: 32px;
   background: linear-gradient(45deg, 
     #333 0%, 
     #666 50%, 
     #999 100%);
   border: 2px solid #222;
-  border-radius: 6px;
-  transform: translateZ(25px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+  border-radius: 4px;
+  transform: translateZ(18px);
+  box-shadow: 0 5px 10px rgba(0,0,0,0.4);
   display: block;
 }
 
@@ -1479,7 +1480,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 10px;
+  font-size: 8px;
 }
 
 /* Room-specific object visibility */
@@ -1699,7 +1700,7 @@
     filter: brightness(1) drop-shadow(0 0 0px rgba(16, 185, 129, 0));
   }
   50% { 
-    filter: brightness(1.3) drop-shadow(0 0 20px rgba(16, 185, 129, 0.6));
+    filter: brightness(1.3) drop-shadow(0 0 15px rgba(16, 185, 129, 0.6));
   }
 }
 
@@ -1714,13 +1715,13 @@
 
 /* Character sprite for isometric view */
 .alex-idle-iso {
-  background-image: url("data:image/svg+xml,%3Csvg width='50' height='65' xmlns='http://www.w3.org/2000/svg'%3E%3Cg transform='skewY(-8deg) scale(1.1)'%3E%3C!-- Head --%3E%3Crect x='18' y='8' width='18' height='18' fill='%23fdbcb4' rx='3'/%3E%3C!-- Hair --%3E%3Crect x='16' y='6' width='22' height='13' fill='%23654321' rx='5'/%3E%3C!-- Eyes --%3E%3Crect x='20' y='13' width='2' height='2' fill='%23000'/%3E%3Crect x='32' y='13' width='2' height='2' fill='%23000'/%3E%3C!-- Body --%3E%3Crect x='16' y='26' width='22' height='26' fill='%234a90e2' rx='3'/%3E%3C!-- Arms --%3E%3Crect x='9' y='29' width='7' height='18' fill='%23fdbcb4' rx='2'/%3E%3Crect x='38' y='29' width='7' height='18' fill='%23fdbcb4' rx='2'/%3E%3C!-- Legs --%3E%3Crect x='18' y='52' width='7' height='18' fill='%23333' rx='2'/%3E%3Crect x='29' y='52' width='7' height='18' fill='%23333' rx='2'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cg transform='skewY(-6deg) scale(1.05)'%3E%3C!-- Head --%3E%3Crect x='14' y='6' width='14' height='14' fill='%23fdbcb4' rx='2'/%3E%3C!-- Hair --%3E%3Crect x='12' y='4' width='18' height='10' fill='%23654321' rx='4'/%3E%3C!-- Eyes --%3E%3Crect x='16' y='10' width='2' height='2' fill='%23000'/%3E%3Crect x='24' y='10' width='2' height='2' fill='%23000'/%3E%3C!-- Body --%3E%3Crect x='12' y='20' width='18' height='20' fill='%234a90e2' rx='2'/%3E%3C!-- Arms --%3E%3Crect x='7' y='22' width='5' height='14' fill='%23fdbcb4' rx='2'/%3E%3Crect x='30' y='22' width='5' height='14' fill='%23fdbcb4' rx='2'/%3E%3C!-- Legs --%3E%3Crect x='14' y='40' width='5' height='14' fill='%23333' rx='2'/%3E%3Crect x='23' y='40' width='5' height='14' fill='%23333' rx='2'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 /* Character shadow */
 .character-shadow {
-  width: 35px;
-  height: 10px;
+  width: 28px;
+  height: 8px;
   background: radial-gradient(ellipse, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.1) 50%, transparent 80%);
   border-radius: 50%;
 }
@@ -1728,43 +1729,52 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .isometric-room {
-    transform: rotateX(40deg) rotateY(-40deg) scale(0.8);
+    transform: rotateX(25deg) rotateY(-25deg) scale(0.9);
   }
   
   .isometric-floor {
-    width: 350px;
-    height: 350px;
+    width: 280px;
+    height: 280px;
   }
   
   .isometric-wall-back,
   .isometric-wall-right {
-    width: 350px;
-    height: 175px;
+    width: 280px;
+    height: 140px;
   }
   
   .isometric-character {
-    bottom: 60px;
+    bottom: 18px;
   }
   
   .alex-sprite-isometric {
-    width: 40px;
-    height: 55px;
+    width: 36px;
+    height: 45px;
   }
 }
 
 @media (max-width: 480px) {
   .isometric-room {
-    transform: rotateX(35deg) rotateY(-35deg) scale(0.7);
+    transform: rotateX(20deg) rotateY(-20deg) scale(0.8);
   }
   
   .isometric-floor {
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
   }
   
   .isometric-wall-back,
   .isometric-wall-right {
-    width: 300px;
-    height: 150px;
+    width: 250px;
+    height: 125px;
+  }
+  
+  .isometric-character {
+    bottom: 15px;
+  }
+  
+  .alex-sprite-isometric {
+    width: 32px;
+    height: 40px;
   }
 }
