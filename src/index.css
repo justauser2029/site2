@@ -233,10 +233,10 @@
   50% { transform: scale(1.1); }
 }
 
-/* BEDROOM - Properly positioned objects */
+/* BEDROOM - Properly positioned objects on floor */
 .room-bedroom .isometric-bed {
-  bottom: 40px;
-  right: 30%;
+  bottom: 20px;
+  right: 25%;
   width: 80px;
   height: 50px;
   background: linear-gradient(45deg, 
@@ -278,10 +278,10 @@
   border-radius: 3px;
 }
 
-/* BEDROOM - Wardrobe positioned against back wall */
+/* BEDROOM - Wardrobe against back wall */
 .room-bedroom .isometric-wardrobe {
-  bottom: 80px;
-  left: 20%;
+  bottom: 20px;
+  left: 15%;
   width: 55px;
   height: 70px;
   background: linear-gradient(45deg, 
@@ -317,10 +317,10 @@
   border-radius: 2px;
 }
 
-/* BEDROOM - Vanity positioned in corner */
+/* BEDROOM - Vanity on floor */
 .room-bedroom .isometric-vanity {
-  bottom: 60px;
-  right: 20%;
+  bottom: 20px;
+  right: 45%;
   width: 48px;
   height: 32px;
   background: linear-gradient(45deg, 
@@ -356,10 +356,10 @@
   font-size: 8px;
 }
 
-/* BEDROOM - Chair positioned near vanity */
+/* BEDROOM - Chair on floor near vanity */
 .room-bedroom .isometric-chair {
-  bottom: 35px;
-  right: 40%;
+  bottom: 20px;
+  right: 55%;
   width: 28px;
   height: 28px;
   background: linear-gradient(45deg, 
@@ -385,10 +385,10 @@
   border-radius: 2px;
 }
 
-/* BEDROOM - Bedside lamp */
+/* BEDROOM - Bedside lamp on floor */
 .room-bedroom .isometric-bedside-lamp {
-  bottom: 50px;
-  right: 15%;
+  bottom: 20px;
+  right: 10%;
   width: 20px;
   height: 35px;
   background: linear-gradient(45deg, 
@@ -415,7 +415,7 @@
   box-shadow: 0 0 8px rgba(255, 255, 224, 0.5);
 }
 
-/* BEDROOM - Window */
+/* BEDROOM - Window on wall */
 .room-bedroom .isometric-bedroom-window {
   bottom: 100px;
   left: 10%;
@@ -449,9 +449,9 @@
   background: #333;
 }
 
-/* BEDROOM - Rug */
+/* BEDROOM - Rug on floor */
 .room-bedroom .isometric-bedroom-rug {
-  bottom: 15px;
+  bottom: 5px;
   left: 35%;
   width: 64px;
   height: 40px;
@@ -468,10 +468,10 @@
   display: block;
 }
 
-/* BEDROOM - Laundry basket */
+/* BEDROOM - Laundry basket on floor */
 .room-bedroom .isometric-laundry-basket {
-  bottom: 30px;
-  left: 15%;
+  bottom: 20px;
+  left: 5%;
   width: 32px;
   height: 28px;
   background: linear-gradient(45deg, 
@@ -494,9 +494,9 @@
   font-size: 6px;
 }
 
-/* LIVING ROOM - Sofa positioned centrally */
+/* LIVING ROOM - Sofa on floor */
 .room-living .isometric-sofa {
-  bottom: 50px;
+  bottom: 20px;
   left: 30%;
   width: 72px;
   height: 44px;
@@ -542,10 +542,10 @@
   border-radius: 2px;
 }
 
-/* LIVING ROOM - Bookshelf against wall */
+/* LIVING ROOM - Bookshelf on floor against wall */
 .room-living .isometric-bookshelf {
-  bottom: 90px;
-  left: 15%;
+  bottom: 20px;
+  left: 10%;
   width: 48px;
   height: 64px;
   background: linear-gradient(45deg, 
@@ -582,10 +582,10 @@
   border: 1px solid #333;
 }
 
-/* LIVING ROOM - Floor lamp */
+/* LIVING ROOM - Floor lamp on floor */
 .room-living .isometric-floor-lamp {
-  bottom: 60px;
-  right: 25%;
+  bottom: 20px;
+  right: 20%;
   width: 24px;
   height: 56px;
   background: linear-gradient(45deg, 
@@ -612,7 +612,7 @@
   box-shadow: 0 0 12px rgba(255, 255, 224, 0.6);
 }
 
-/* LIVING ROOM - Window */
+/* LIVING ROOM - Window on wall */
 .room-living .isometric-window {
   bottom: 100px;
   right: 10%;
@@ -646,7 +646,7 @@
   background: #333;
 }
 
-/* LIVING ROOM - Wall art */
+/* LIVING ROOM - Wall art on wall */
 .room-living .isometric-wall-art {
   bottom: 85px;
   left: 45%;
@@ -673,7 +673,7 @@
   font-size: 10px;
 }
 
-/* LIVING ROOM - Wall clock */
+/* LIVING ROOM - Wall clock on wall */
 .room-living .isometric-wall-clock {
   bottom: 110px;
   left: 55%;
@@ -699,10 +699,10 @@
   font-size: 8px;
 }
 
-/* LIVING ROOM - Plant */
+/* LIVING ROOM - Plant on floor */
 .room-living .isometric-plant {
-  bottom: 35px;
-  right: 15%;
+  bottom: 20px;
+  right: 10%;
   width: 28px;
   height: 40px;
   background: linear-gradient(45deg, 
@@ -725,9 +725,9 @@
   font-size: 10px;
 }
 
-/* LIVING ROOM - Rug */
+/* LIVING ROOM - Rug on floor */
 .room-living .isometric-rug {
-  bottom: 15px;
+  bottom: 5px;
   left: 25%;
   width: 80px;
   height: 48px;
@@ -744,9 +744,9 @@
   display: block;
 }
 
-/* KITCHEN - Table positioned centrally */
+/* KITCHEN - Table on floor */
 .room-kitchen .isometric-table {
-  bottom: 40px;
+  bottom: 20px;
   left: 40%;
   width: 56px;
   height: 40px;
@@ -783,10 +783,10 @@
   font-size: 6px;
 }
 
-/* KITCHEN - Water dispenser positioned in corner */
+/* KITCHEN - Water dispenser on floor */
 .room-kitchen .isometric-water {
-  bottom: 35px;
-  right: 20%;
+  bottom: 20px;
+  right: 15%;
   width: 28px;
   height: 44px;
   background: linear-gradient(45deg, 
@@ -832,10 +832,10 @@
   10%, 80% { opacity: 1; }
 }
 
-/* KITCHEN - Refrigerator against wall */
+/* KITCHEN - Refrigerator on floor against wall */
 .room-kitchen .isometric-fridge {
-  bottom: 75px;
-  right: 10%;
+  bottom: 20px;
+  right: 5%;
   width: 52px;
   height: 80px;
   background: linear-gradient(45deg, 
@@ -881,10 +881,10 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-/* KITCHEN - Cutting board */
+/* KITCHEN - Cutting board on floor */
 .room-kitchen .isometric-cutting-board {
-  bottom: 25px;
-  left: 20%;
+  bottom: 20px;
+  left: 15%;
   width: 32px;
   height: 20px;
   background: linear-gradient(45deg, 
@@ -907,10 +907,10 @@
   font-size: 6px;
 }
 
-/* KITCHEN - Spice shelf */
+/* KITCHEN - Spice shelf on wall */
 .room-kitchen .isometric-spice-shelf {
   bottom: 85px;
-  left: 15%;
+  left: 10%;
   width: 40px;
   height: 32px;
   background: linear-gradient(45deg, 
@@ -933,10 +933,10 @@
   font-size: 8px;
 }
 
-/* KITCHEN - Coffee station */
+/* KITCHEN - Coffee station on floor */
 .room-kitchen .isometric-coffee-station {
-  bottom: 50px;
-  left: 55%;
+  bottom: 20px;
+  left: 60%;
   width: 36px;
   height: 28px;
   background: linear-gradient(45deg, 
@@ -959,9 +959,9 @@
   font-size: 8px;
 }
 
-/* KITCHEN - Trash and recycle */
+/* KITCHEN - Trash and recycle on floor */
 .room-kitchen .isometric-trash-recycle {
-  bottom: 25px;
+  bottom: 20px;
   right: 35%;
   width: 28px;
   height: 32px;
@@ -985,10 +985,10 @@
   font-size: 6px;
 }
 
-/* BATHROOM - Shower positioned in corner */
+/* BATHROOM - Shower on floor in corner */
 .room-bathroom .isometric-shower {
-  bottom: 60px;
-  left: 20%;
+  bottom: 20px;
+  left: 15%;
   width: 40px;
   height: 52px;
   background: linear-gradient(45deg, 
@@ -1030,10 +1030,10 @@
   50% { opacity: 1; transform: translateY(8px); }
 }
 
-/* BATHROOM - Towel rack */
+/* BATHROOM - Towel rack on wall */
 .room-bathroom .isometric-towel-rack {
   bottom: 75px;
-  right: 25%;
+  right: 20%;
   width: 36px;
   height: 40px;
   background: linear-gradient(45deg, 
@@ -1068,10 +1068,10 @@
   font-size: 6px;
 }
 
-/* BATHROOM - Sink */
+/* BATHROOM - Sink on floor */
 .room-bathroom .isometric-sink {
-  bottom: 40px;
-  right: 15%;
+  bottom: 20px;
+  right: 10%;
   width: 44px;
   height: 32px;
   background: linear-gradient(45deg, 
@@ -1106,10 +1106,10 @@
   font-size: 6px;
 }
 
-/* BATHROOM - Mirror */
+/* BATHROOM - Mirror on wall */
 .room-bathroom .isometric-mirror {
   bottom: 85px;
-  right: 12%;
+  right: 8%;
   width: 40px;
   height: 32px;
   background: linear-gradient(45deg, #e6f3ff 0%, #87ceeb 50%, #b0e0e6 100%);
@@ -1129,9 +1129,9 @@
   font-size: 10px;
 }
 
-/* BATHROOM - Bathroom rug */
+/* BATHROOM - Bathroom rug on floor */
 .room-bathroom .isometric-bathroom-rug {
-  bottom: 15px;
+  bottom: 5px;
   left: 30%;
   width: 56px;
   height: 32px;
@@ -1148,10 +1148,10 @@
   display: block;
 }
 
-/* BATHROOM - Trash bin */
+/* BATHROOM - Trash bin on floor */
 .room-bathroom .isometric-trash-bin {
-  bottom: 25px;
-  left: 15%;
+  bottom: 20px;
+  left: 5%;
   width: 20px;
   height: 24px;
   background: linear-gradient(45deg, 
@@ -1174,10 +1174,10 @@
   font-size: 6px;
 }
 
-/* BATHROOM - Window */
+/* BATHROOM - Window on wall */
 .room-bathroom .isometric-bathroom-window {
   bottom: 90px;
-  left: 10%;
+  left: 5%;
   width: 44px;
   height: 36px;
   background: linear-gradient(45deg, #87ceeb 0%, #b0e0e6 50%, #e0f6ff 100%);
@@ -1208,10 +1208,10 @@
   background: #333;
 }
 
-/* BATHROOM - Wall frame */
+/* BATHROOM - Wall frame on wall */
 .room-bathroom .isometric-wall-frame {
   bottom: 65px;
-  left: 45%;
+  left: 40%;
   width: 28px;
   height: 20px;
   background: linear-gradient(45deg, 
@@ -1234,9 +1234,9 @@
   font-size: 6px;
 }
 
-/* GYM - Exercise equipment positioned centrally */
+/* GYM - Exercise equipment on floor */
 .room-gym .isometric-exercise {
-  bottom: 50px;
+  bottom: 20px;
   left: 35%;
   width: 56px;
   height: 32px;
@@ -1278,10 +1278,10 @@
   box-shadow: 0 3px 6px rgba(0,0,0,0.3);
 }
 
-/* GYM - Free weights */
+/* GYM - Free weights on floor */
 .room-gym .isometric-free-weights {
-  bottom: 25px;
-  left: 20%;
+  bottom: 20px;
+  left: 15%;
   width: 40px;
   height: 24px;
   background: linear-gradient(45deg, 
@@ -1304,10 +1304,10 @@
   font-size: 8px;
 }
 
-/* GYM - Bench */
+/* GYM - Bench on floor */
 .room-gym .isometric-bench {
-  bottom: 35px;
-  right: 30%;
+  bottom: 20px;
+  right: 25%;
   width: 48px;
   height: 20px;
   background: linear-gradient(45deg, 
@@ -1333,10 +1333,10 @@
   border-radius: 2px;
 }
 
-/* GYM - Mirror */
+/* GYM - Mirror on wall */
 .room-gym .isometric-gym-mirror {
   bottom: 90px;
-  right: 10%;
+  right: 5%;
   width: 64px;
   height: 48px;
   background: linear-gradient(45deg, #e6f3ff 0%, #87ceeb 50%, #b0e0e6 100%);
@@ -1356,10 +1356,10 @@
   font-size: 10px;
 }
 
-/* GYM - Yoga mat */
+/* GYM - Yoga mat on floor */
 .room-gym .isometric-yoga-mat {
-  bottom: 15px;
-  left: 45%;
+  bottom: 5px;
+  left: 40%;
   width: 64px;
   height: 24px;
   background: linear-gradient(45deg, 
@@ -1373,10 +1373,10 @@
   display: block;
 }
 
-/* GYM - Water bottle */
+/* GYM - Water bottle on floor */
 .room-gym .isometric-water-bottle {
-  bottom: 40px;
-  right: 15%;
+  bottom: 20px;
+  right: 10%;
   width: 16px;
   height: 28px;
   background: linear-gradient(45deg, 
@@ -1399,7 +1399,7 @@
   font-size: 5px;
 }
 
-/* GYM - Ceiling fan */
+/* GYM - Ceiling fan on ceiling */
 .room-gym .isometric-ceiling-fan {
   bottom: 120px;
   left: 50%;
@@ -1431,10 +1431,10 @@
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* GYM - Motivational poster */
+/* GYM - Motivational poster on wall */
 .room-gym .isometric-motivational-poster {
   bottom: 75px;
-  left: 15%;
+  left: 10%;
   width: 36px;
   height: 28px;
   background: linear-gradient(45deg, 
@@ -1457,10 +1457,10 @@
   font-size: 8px;
 }
 
-/* GYM - Speaker */
+/* GYM - Speaker on floor */
 .room-gym .isometric-speaker {
-  bottom: 60px;
-  left: 55%;
+  bottom: 20px;
+  left: 60%;
   width: 28px;
   height: 32px;
   background: linear-gradient(45deg, 
